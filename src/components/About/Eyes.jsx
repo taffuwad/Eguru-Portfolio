@@ -153,16 +153,16 @@ export default function CursorEyes() {
       <style>{STYLES}</style>
 
       {/* Eye pair */}
-      <div className="flex gap-[clamp(18px,5vw,48px)]">
+      <div className="cursor-eyes flex">
         {[0, 1].map((i) => (
           <div
             key={i}
             ref={(el) => { eyeRefs.current[i] = el; }}
             className="
               relative grid aspect-square place-items-center overflow-hidden rounded-full
-              w-[clamp(78px,17vw,150px)]
+              cursor-eye
               bg-[radial-gradient(circle_at_32%_26%,#ffffff_0%,#eef3fa_45%,#c3ccdc_100%)]
-              shadow-[inset_0_10px_22px_rgba(18,28,48,0.2),inset_0_-8px_16px_rgba(255,255,255,0.85),0_20px_45px_rgba(0,0,0,0.55)]
+              
               origin-center will-change-transform
             "
           >

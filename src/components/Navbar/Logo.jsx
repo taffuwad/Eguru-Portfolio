@@ -5,7 +5,7 @@ const Logo = () => {
     <div className='logo'>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 682" role="img" aria-label="GURU logo">
         <title>GURU logo</title>
-        <g fill="currentColor" fillRule="evenodd">
+        <g  fillRule="evenodd">
             <path className="svg-path-text" d="M 209,457 L 228,486 L 255,514 L 273,528 L 287,537 L 320,
             553 L 347,561 L 357,562 L 369,565 L 377,565 L 378,566 L 424,565 L 450,
             560 L 470,554 L 491,545 L 506,537 L 537,514 L 558,493 L 567,482 L 583,

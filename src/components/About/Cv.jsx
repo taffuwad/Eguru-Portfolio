@@ -2,9 +2,9 @@ import { useState } from "react";
 
 const KEYFRAMES = `
 @keyframes dl-pulse {
-  0%   { scale: 0.95; box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
-  70%  { scale: 1;    box-shadow: 0 0 0 16px rgba(255,255,255,0); }
-  100% { scale: 0.95; box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  0%   { scale: 0.95; box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 70%, transparent); }
+  70%  { scale: 1;    box-shadow: 0 0 0 16px color-mix(in srgb, var(--color-accent) 0%, transparent); }
+  100% { scale: 0.95; box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 0%, transparent); }
 }
 @keyframes dl-installing {
   from { height: 0; }
@@ -16,7 +16,7 @@ const KEYFRAMES = `
   100% { opacity: 0; visibility: hidden; }
 }
 @keyframes dl-installed {
-  100% { width: 150px; border-color: rgb(35,174,35); }
+  100% { width: 150px; border-color: var(--color-accent-hover); }
 }
 @keyframes dl-circle-delete {
   100% { opacity: 0; visibility: hidden; }
@@ -37,10 +37,11 @@ export default function DownloadToggle() {
         className={[
           // base
           "relative flex items-center w-40 p-[5px] cursor-pointer rounded-full",
-          "border-2 border-[rgb(91,91,240)] bg-transparent transition-all duration-[400ms] ease",
+          "border-2 border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-text-light)] transition-all duration-[400ms] ease",
+          "focus-within:ring-2 focus-within:ring-[var(--color-accent-hover)] focus-within:ring-offset-2",
           // rotating dot ::before
           "before:content-[''] before:absolute before:inset-0 before:m-auto",
-          "before:w-2 before:h-2 before:rounded-full before:bg-white",
+          "before:w-2 before:h-2 before:rounded-full before:bg-[var(--color-text-light)]",
           "before:opacity-0 before:invisible before:transition-all before:duration-[400ms] before:ease",
           // checked state (mirrors .label:has(.input:checked))
           checked && "w-[57px] [animation:dl-installed_0.4s_ease_3.5s_forwards]",
@@ -51,7 +52,8 @@ export default function DownloadToggle() {
       >
         <input
           type="checkbox"
-          className="hidden"
+          className="sr-only"
+          aria-label="Resume"
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
         />
@@ -60,14 +62,14 @@ export default function DownloadToggle() {
         <span
           className={[
             "relative flex items-center justify-center w-[45px] h-[45px] rounded-full",
-            "bg-[rgb(91,91,240)] shadow-[0_0_0_0_white] overflow-hidden",
+            "bg-[var(--color-accent)] shadow-[0_0_0_0_transparent] overflow-hidden",
             "transition-all duration-[400ms] ease",
             // checked: rotate + animations
             checked && "rotate-180",
             checked && "[animation:dl-pulse_1s_forwards,dl-circle-delete_0.2s_ease_3.5s_forwards]",
             // ::before fill
             "before:content-[''] before:absolute before:left-0 before:top-0",
-            "before:w-full before:h-0 before:bg-[#3333a8] before:transition-all before:duration-[400ms] before:ease",
+            "before:w-full before:h-0 before:bg-[var(--color-accent-hover)] before:transition-all before:duration-[400ms] before:ease",
             checked && "before:[animation:dl-installing_3s_ease-in-out_forwards]",
           ]
             .filter(Boolean)
@@ -125,7 +127,7 @@ export default function DownloadToggle() {
         {/* "Open" — shown when checked */}
         <p
           className={[
-            "absolute right-[18px] bottom-[14px] text-[17px] text-white text-center",
+            "absolute right-[18px] bottom-[14px] text-[17px] text-[var(--color-text-light)] text-center",
             "transition-all duration-[400ms] ease",
             "opacity-0 invisible",
             checked &&
