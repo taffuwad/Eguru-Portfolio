@@ -1,0 +1,47 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  background: var(--color-bg);
+  color: var(--color-dark);
+  will-change: transform;
+}
+
+.preloader-counter {
+    display: flex;
+  font-size: 30vw;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.preloader-words {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
+  font-size: clamp(1.25rem, 4vw, 2.75rem);
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.preloader-word-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.preloader-word {
+  display: block;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader-word {
+    transition: none;
+  }
+}
