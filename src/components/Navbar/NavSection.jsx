@@ -84,8 +84,8 @@ function NavSection({ lenis = null }) {
   );
 
   return (
-    <nav className="w-full px-6 py-5">
-      <div className="flex justify-end items-center uppercase gap-8">
+    <nav className="nav-section" aria-label="Main navigation">
+      <div className="nav-list">
         {LINKS.map(({ id, label }) => {
           const isActive = activeId === id;
 
