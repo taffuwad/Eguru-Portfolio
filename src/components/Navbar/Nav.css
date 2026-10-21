@@ -1,0 +1,56 @@
+.logo svg{
+    height: 70px;
+    width: auto;
+}
+
+.navbar{
+    padding: 1.5vw 3vw;
+}
+
+/* NavSection.css */
+.nav-link {
+  display: block;
+  position: relative;
+  height: 1.5rem;
+  line-height: 1.6rem;
+  overflow: hidden;          /* the second copy waits below the fold */
+  color: var(--color-dark);
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: 0.3s ease;
+}
+
+/* renamed from .block so it can't clash with Tailwind's `.block` utility */
+.nav-block {
+  display: block;
+}
+
+.nav-block:last-child {
+  color: var(--color-dark);
+}
+
+.letter {
+  display: inline-block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Both copies roll up → letters leave the top, the clone enters from below */
+.nav-link:hover .letter,
+.nav-link:focus-visible .letter,
+.nav-link.is-active .letter {
+  transform: translateY(-100%);
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter {
+    transition: none;
+  }
+}

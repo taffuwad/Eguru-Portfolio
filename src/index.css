@@ -28,6 +28,23 @@
   --font-main: 'main-font';
   --font-para: 'para';
   --font-para2: 'para-font2';
+
+  /* Backgrounds */
+  --color-bg: #F5EFE5;
+  --color-bg2: #FFFCF7;
+  --color-dark: #171513;
+
+  /* Typography */
+  --color-text: #171513;
+  --color-muted: #766C62;
+  --color-text-light: #F5EFE5;
+
+  /* Accent */
+  --color-accent: #A65D3B;
+  --color-accent-hover: #85472D;
+
+  /* Borders */
+  --color-border: #DED3C6;
 }
 
 :root{
@@ -35,17 +52,40 @@
   --main: 'main-font';
   --para: 'para';
   --para2: 'para-font2';
-    
+
+
+  /* Backgrounds */
+  --color-bg: #F5EFE5;
+  --color-surface: #FFFCF7;
+  --color-dark: #171513;
+
+  /* Typography */
+  --color-text: #171513;
+  --color-muted: #766C62;
+  --color-text-light: #F5EFE5;
+
+  /* Accent */
+  --color-accent: #A65D3B;
+  --color-accent-hover: #85472D;
+
+  /* Borders */
+  --color-border: #DED3C6;
 }
 
-
-
-body::-webkit-scrollbar {
-  display: none;
+body{
+  color: var(--color-text);
+  font-family: var(--main);
 }
 
-
+html,
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }

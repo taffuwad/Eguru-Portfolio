@@ -1,0 +1,42 @@
+.home{
+    background: url("../../assets/hero-images/hero-bg.png") center / cover no-repeat;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+
+    padding: 2rem clamp(0.75rem, 4vw, 4rem);
+}
+
+.home-copy {
+    width: 100%;
+    font-size: clamp(1rem, 7.2vw, 7rem);
+    line-height: 1.05;
+}
+
+.home h1{
+    white-space: nowrap;
+
+    text-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.48),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+
+}
+
+@media (min-width:640px) {
+    .home-copy {
+    line-height: 1;
+}
+}
+@media (min-width:1024px) {
+    .home-copy {
+    line-height: 0.9;
+    .home{
+        padding: 1rem clamp(0.75rem, 4vw, 4rem);
+    }
+}
+}
+@media (min-width:1324px) {
+    .home-copy {
+    line-height: 0.81;
+}
+}

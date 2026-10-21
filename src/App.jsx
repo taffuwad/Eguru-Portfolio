@@ -2,6 +2,8 @@ import React from 'react'
 import { useEffect } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
+import Home from './components/Home/Home';
+import Navbar from './components/Navbar/Navbar';
 
 const App = () => {
 
@@ -21,10 +23,8 @@ const App = () => {
 
   return (
     <div className=''>
-      <div className="1 h-screen w-full bg-rose-500">
-
-      </div>
-      <div className="1 h-screen w-full bg-blue-500"></div>
+      <Navbar />
+      <Home />
     </div>
   )
 }
