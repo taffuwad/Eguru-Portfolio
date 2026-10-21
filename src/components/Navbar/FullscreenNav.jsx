@@ -119,18 +119,15 @@ const FullscreenNav = ({ isOpen, onClose }) => {
       <nav className="fullscreen-nav-content" aria-label="Main navigation">
 
         <div className="fullscreen-nav-links">
-          {LINKS.map(({ id, label, number }) => (
+          {LINKS.map(({ id, label }) => (
             <a
               className="fullscreen-nav-link"
               href={`#${id}`}
               key={id}
               onClick={onClose}
             >
-              <span className="fullscreen-nav-number">{number}</span>
               <span>{label}</span>
-              <span className="fullscreen-nav-arrow" aria-hidden="true">
-                ↗
-              </span>
+              
             </a>
           ))}
         </div>
