@@ -1,0 +1,50 @@
+.about{
+    padding: 2rem 4vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+ .a-box{
+    background: #fdfdfd;
+    height: 100%;
+    width: 49.9%;
+}
+.t-left {
+    background: url("../../assets/hero-images/hero-about.jpg");
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.t-right{
+    padding: 4rem 3rem 3rem 3rem;
+}
+.t-right h1{
+    color: #111111;
+}
+.t-right p{
+    color: #111111bd;
+}
+.b-left{
+
+
+    padding: 2vw 3vw 1vw 0 ;
+}
+
+
+.b-left h1{
+    text-transform: uppercase;
+    font-size: clamp(2rem,2.8vw,3rem);
+}
+
+.b-left p{
+    color: #111111c2;
+}
+.b-right{
+
+}
+
+.CV{
+    background: var(--color-text);
+    margin-top: 1vw;
+    border-radius: 4rem;
+}

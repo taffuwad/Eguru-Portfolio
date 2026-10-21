@@ -14,14 +14,28 @@
 }
 
 .home h1{
+    overflow: hidden;
     white-space: nowrap;
     mix-blend-mode: exclusion;
-
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
 
     text-shadow:
     0 2px 3px rgba(0, 0, 0, 0.48),
     0 8px 24px rgba(0, 0, 0, 0.12);
+}
 
+.line-child {
+    display: block;
+    will-change: transform;
+}
+
+.home .hpara{
+    font-size: clamp(0.5rem,0.7vw,0.8rem); 
+    white-space: nowrap;
+    color: #11111142;
+    word-spacing: 0.06rem;
+    text-transform: uppercase;
 }
 
 @media (min-width:640px) {
@@ -34,6 +48,9 @@
     line-height: 0.9;
     .home{
         padding: 1rem clamp(0.75rem, 4vw, 4rem);
+    }
+    .home .hpara{
+        display: block;
     }
 }
 }
@@ -50,4 +67,11 @@
         font-size: clamp(1.8rem,8vw,8.5vw);
     }
     
+}
+
+
+@media (max-width:1024px) {
+    .home .hpara{
+        display: none;
+    }
 }

@@ -31,29 +31,21 @@ const Preloader = ({ onLoaded }) => {
           }
         },
       })
-        // Fire the hero animation right as the curtain starts moving
-        .call(() => onLoaded?.())
-        .to(
-          ".preloader-word",
-          {
-            yPercent: -110,
-            duration: reduce ? 0.01 : 0.55,
-            stagger: reduce ? 0 : 0.08,
-            ease: "power3.inOut",
-          },
-          "-=0.05"
-        )
         .to(
           root,
           {
             yPercent: -100,
             duration: reduce ? 0.01 : 1.1,
             ease: "expo.inOut",
+            onStart: () => {
+              // Trigger navbar and hero animation right as curtain starts unveiling
+              onLoaded?.();
+            },
             onComplete: () => {
               document.documentElement.style.overflow = "";
             },
           },
-          "-=0.2"
+          "+=0.1"
         )
         .set(root, { display: "none" });
 
@@ -83,14 +75,6 @@ const Preloader = ({ onLoaded }) => {
       <div className="preloader-counter font-para2">
         <span ref={counterRef}>00</span><span>%</span>
       </div>
-      {/* <div className="preloader-words">
-        <span className="preloader-word-mask">
-          <span className="preloader-word">Every great trick</span>
-        </span>
-        <span className="preloader-word-mask">
-          <span className="preloader-word">has three parts</span>
-        </span>
-      </div> */}
     </div>
   );
 };
