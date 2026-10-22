@@ -1,0 +1,36 @@
+.works-gallery2 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(0.5rem, 1.25vw, 1.25rem);
+}
+
+.pro-card2 {
+  min-width: 0;
+  aspect-ratio: 0.52;
+  background-color: var(--color-border);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  will-change: transform;
+}
+
+.card-restaurant2 {
+  margin-top: clamp(6rem, 21vw, 21rem);
+  background-image: url("https://images.unsplash.com/photo-1792422167199-5a4dcd187101?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D");
+}
+
+.card-shop2 {
+  margin-top: clamp(4rem, 14vw, 14rem);
+  background-image: url("https://plus.unsplash.com/premium_photo-1672759361613-c3e654f4d7c5?q=80&w=748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D");
+}
+
+.card-real-estate2 {
+  margin-top: clamp(2rem, 7vw, 7rem);
+  background-image: url("https://images.unsplash.com/photo-1743890285637-7319392dad92?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D");
+}
+
+.card-restaurant-concept2 {
+  margin-top: 0 ;
+  background-image: url("https://plus.unsplash.com/premium_photo-1792090512044-4e9fee5d2782?q=80&w=746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D");
+}

@@ -23,7 +23,7 @@ const ProCards = () => {
   }, []);
 
   return (
-    <div className="works-gallery cursor-pointer">
+    <div className="works-gallery cursor-pointer z-10 ">
       {PROJECTS.map(({ name, className, speed }) => (
         <article
           key={className}

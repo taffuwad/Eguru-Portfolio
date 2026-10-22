@@ -1,4 +1,5 @@
 import PlantButton from "./MoreBtn";
+import ProCard2 from "./ProCard2";
 import ProCards from "./ProCards";
 import "./Works.css";
 
@@ -9,6 +10,7 @@ const Works = () => {
         <h1 className="works-title">Works</h1>
       </header>
       <ProCards />
+      <ProCard2 />
       <div className="see-more-con">
         <PlantButton
           className="see-more-button"
