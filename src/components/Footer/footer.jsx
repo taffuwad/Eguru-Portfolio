@@ -1,39 +1,61 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Logo from '../Navbar/Logo'
 import './Footer.css'
 
 const Footer = () => {
+  const footerRef = useRef(null)
+
+  useEffect(() => {
+    const footer = footerRef.current
+    if (!footer) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          footer.classList.add('is-visible')
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.15 }
+    )
+
+    footer.classList.add('is-observed')
+    observer.observe(footer)
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className=' footer min-h-[30vh] w-full bg-rose-700 uppercase '>
-      <div className="f-top h-[90%] bg-amber-200 w-full flex">
-        <div className="logo h-full w-[40%] bg-red-950">
+    <footer ref={footerRef} className="footer">
+      <div className="footer-main">
+        <div className="footer-brand footer-reveal">
           <Logo />
+          
         </div>
-        <div className="nav-links h-full w-[30%] bg-red-800 flex flex-col">
-            <a href="">Home</a>
-            <a href="">About</a>
-            <a href="">Works</a>
-            <a href="">Contact</a>
-        </div>
-        <div className="social h-full w-[30%] flex flex-col bg-red-700">
-          <a className='' href="">Whatsapp</a>
-          <a className='' href="">LINKEDINE</a>
-          <a className='' href="">GITHUB</a>
-          <a className='' href="">FACEBOOK</a>
-        </div>
-      </div>
-      <div className="f-bottom h-[10%] w-full flex justify-between ">
-        <div className="tag1">
-          © 2026 | Dario Grigoletti
-        </div>
-        <div className="tag2">
-          Privacy Policy
-        </div>
-        <div className="tag3">
-          Fuwad Talukder
+
+        <nav className="footer-column footer-reveal" aria-label="Footer navigation">
+          <span className="footer-label">Explore</span>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#works">Works</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div className="footer-column footer-reveal">
+          <span className="footer-label">Find me</span>
+          <a href="#home">Whatsapp</a>
+          <a href="#home">LinkedIn</a>
+          <a href="#home">GitHub</a>
+          <a href="#home">Facebook</a>
         </div>
       </div>
-    </div>
+
+      <div className="footer-bottom footer-reveal">
+        <span>© 2026 | Dario Grigoletti</span>
+        <span>Privacy Policy</span>
+        <span>Fuwad Talukder</span>
+      </div>
+    </footer>
   )
 }
 
