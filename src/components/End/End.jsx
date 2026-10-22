@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import Logo from '../Navbar/Logo'
-import './Footer.css'
+import './End.css'
 
-const Footer = () => {
+const End = () => {
  
 
   return (
-    <footer className="footer">
+    <footer  className="footer">
       <div className="footer-main">
         <div className="footer-brand footer-reveal">
           <Logo />
@@ -39,4 +39,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default End

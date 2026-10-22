@@ -10,7 +10,8 @@ import About from './components/About/About';
 import Preloader from './components/Preloader/Preloader';
 import Works from './components/Works/Works';
 import Contact from './components/Contact/Contact';
-import Footer from './components/Footer/Footer';
+import End from './components/End/End';
+
 
 
 
@@ -133,7 +134,7 @@ const App = () => {
       <About />
       <Works />
       <Contact />
-      <Footer />
+      <End />
     </div>
   );
 };
