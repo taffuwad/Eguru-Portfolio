@@ -1,8 +1,28 @@
-import React from 'react'
+const Logo = ({ scrollInstanceRef }) => {
+  const toHome = (event) => {
+    const target = document.getElementById("home");
+    if (!target) return;
 
-const Logo = () => {
+    event.preventDefault();
+
+    const scrollInstance = scrollInstanceRef?.current;
+    if (typeof scrollInstance?.scrollTo === "function") {
+      scrollInstance.scrollTo(target, { offset: 0, duration: 1.2 });
+    } else {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      target.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    }
+
+    window.history.replaceState(null, "", "#home");
+  };
+
   return (
-    <div className='logo'>
+    <a className="logo" href="#home" onClick={toHome} aria-label="Go to home">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 682" role="img" aria-label="GURU logo">
         <title>GURU logo</title>
         <g  fillRule="evenodd">
@@ -37,7 +57,7 @@ const Logo = () => {
             304 L 643,322 L 638,336 L 635,349 L 634,368 L 633,369 L 634,390 L 635,391 L 637,407 L 641,420 L 653,445 L 663,458 L 674,469 L 690,480 L 710,489 L 735,494 L 841,494 L 842,493 L 849,493 L 865,489 L 874,484 L 876,484 L 890,475 L 907,459 L 919,442 L 928,422 L 932,406 L 932,399 L 933,398 L 933,348 L 932,347 L 793,347 L 792,349 L 792,397 L 793,399 L 819,399 L 820,400 L 828,400 L 829,399 L 851,400 L 854,399 L 855,400 L 867,400 L 868,401 L 864,413 L 859,421 L 842,436 L 828,441 L 747,441 L 730,436 L 714,424 L 708,416 L 703,406 L 698,390 L 697,367 L 698,366 L 699,354 L 703,341 L 710,329 L 722,317 L 739,309 L 743,308 L 919,308 L 921,305 L 921,256 L 920,255 L 738,255 L 737,256 L 727,256 L 711,259 L 690,268 L 675,278 Z M 586,277 L 573,252 L 558,230 L 533,204 L 511,187 L 494,177 L 472,167 L 448,159 L 423,154 L 384,153 L 383,154 L 371,154 L 370,155 L 353,157 L 315,169 L 284,185 L 257,205 L 237,225 L 228,236 L 212,260 L 204,276 L 192,309 L 189,321 L 188,333 L 187,334 L 187,343 L 186,344 L 187,387 L 193,416 L 199,433 L 205,444 L 259,398 L 259,392 L 257,387 L 257,381 L 255,373 L 255,349 L 260,323 L 267,305 L 277,287 L 290,271 L 300,261 L 323,244 L 341,235 L 358,229 L 372,226 L 379,226 L 380,225 L 398,224 L 399,225 L 420,226 L 438,230 L 467,243 L 486,257 L 498,269 L 510,284 L 588,284 Z"/>
         </g>
         </svg>
-    </div>
+    </a>
   )
 }
 

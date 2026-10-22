@@ -10,7 +10,11 @@ const Works = () => {
       </header>
       <ProCards />
       <div className="see-more-con">
-        <PlantButton />
+        <PlantButton
+          className="see-more-button"
+          data-scroll
+          data-scroll-speed="0.3"
+        />
       </div>
     </section>
   );

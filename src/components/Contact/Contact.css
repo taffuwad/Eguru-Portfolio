@@ -646,6 +646,11 @@ textarea::placeholder {
     gap: 8vw;
   }
 
+  .con-bottom .sec .email {
+  width: 75%;
+  text-transform: lowercase;
+}
+
   .contact .con-top .text {
     font-size: clamp(3rem, 15vw, 4rem);
     letter-spacing: -0.08rem;

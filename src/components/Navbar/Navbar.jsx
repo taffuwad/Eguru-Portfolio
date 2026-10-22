@@ -5,13 +5,13 @@ import NavSection from "./NavSection";
 import Menu from "./Menu";
 import FullscreenNav from "./FullscreenNav";
 
-const Navbar = () => {
+const Navbar = ({ scrollInstanceRef }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
       <header className="navbar">
-        <Logo />
+        <Logo scrollInstanceRef={scrollInstanceRef} />
         <NavSection />
         <Menu
           isOpen={isMenuOpen}

@@ -89,3 +89,8 @@ body::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
+
+*::selection{
+  background: var(--color-accent-hover);
+  color: #fff;
+}

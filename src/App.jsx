@@ -16,9 +16,10 @@ gsap.registerPlugin(useGSAP, SplitText);
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const containerRef = useRef(null);
+  const scrollInstanceRef = useRef(null);
 
   useEffect(() => {
-    const locomotiveScroll = new LocomotiveScroll({
+    scrollInstanceRef.current = new LocomotiveScroll({
       lenisOptions: {
         lerp: 0.08,
         smoothWheel: true,
@@ -26,7 +27,8 @@ const App = () => {
     });
 
     return () => {
-      locomotiveScroll.destroy();
+      scrollInstanceRef.current?.destroy();
+      scrollInstanceRef.current = null;
     };
   }, []);
 
@@ -70,7 +72,7 @@ const App = () => {
         {
           clipPath:'polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)',
           delay:-0.05,
-          duration:1.5,
+          duration:1.15,
           ease: "expo.inOut",
         },
         
@@ -123,7 +125,7 @@ const App = () => {
   return (
     <div ref={containerRef} className='relative bg-[#fff]' data-scroll-container>
       <Preloader onLoaded={() => setIsLoaded(true)} />
-      <Navbar />
+      <Navbar scrollInstanceRef={scrollInstanceRef} />
       <Home />
       <About />
       <Works />
@@ -133,4 +135,3 @@ const App = () => {
 };
 
 export default App;
-

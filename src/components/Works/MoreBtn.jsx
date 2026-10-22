@@ -232,7 +232,7 @@ export default function LiquidCarveButton({
 
         g.setAttribute(
           "transform",
-          `translate(${f.x.toFixed(2)} ${f.y.toFixed(2)}) ` +
+          `translate(${(size.w / 2 + f.x).toFixed(2)} ${(size.h / 2 + f.y).toFixed(2)}) ` +
             `rotate(${cRot.toFixed(2)}) ` +
             `scale(${cSx.toFixed(3)} ${cSy.toFixed(3)})`
         );
@@ -262,7 +262,7 @@ export default function LiquidCarveButton({
         s.raf = null;
       }
     };
-  }, [hovered, blobSmoothness]);
+  }, [hovered, blobSmoothness, size]);
 
   /* ------------------------------------------------------------------------ */
   /*  6. Tag selection (button vs. anchor)                                     */
@@ -313,7 +313,7 @@ export default function LiquidCarveButton({
       )}
       style={{
         color: hovered ? hoverTextColor : textColor,
-        transition: "color 0.25s ease 0.1s",
+        transition: "0.25s ease ",
       }}
     >
       {/* -------------------------------------------------------------- */}

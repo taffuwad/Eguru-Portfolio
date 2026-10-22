@@ -65,8 +65,17 @@
 }
 
 
-
+@media (min-width:1024px) {
+   .see-more-button {
+    gap: 1rem;
+    padding: 2.2rem 5.2rem;
+    font-size: 3.3rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.16em;
+  }
+}
 @media (max-width: 1024px) {
+
   .works-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: clamp(0.75rem, 2vw, 1.5rem);
@@ -113,5 +122,4 @@
 
 
 }
-
 

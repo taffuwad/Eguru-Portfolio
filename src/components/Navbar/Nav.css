@@ -14,6 +14,7 @@
 .logo {
   flex: 0 1 auto;
   mix-blend-mode: exclusion;
+  cursor: pointer;
 }
 
 .logo svg {
