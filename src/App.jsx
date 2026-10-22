@@ -10,7 +10,7 @@ import About from './components/About/About';
 import Preloader from './components/Preloader/Preloader';
 import Works from './components/Works/Works';
 import Contact from './components/Contact/Contact';
-import Footer from './components/Footer/Footer';
+
 
 
 gsap.registerPlugin(useGSAP, SplitText);
@@ -132,7 +132,6 @@ const App = () => {
       <About />
       <Works />
       <Contact />
-      <Footer />
     </div>
   );
 };
