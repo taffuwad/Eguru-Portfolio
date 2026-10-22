@@ -51,7 +51,7 @@ const App = () => {
       }
 
       if (reduce) {
-        gsap.set(".navbar", { y: 0, autoAlpha: 1 });
+        gsap.set(".navbar", { y: 0, autoAlpha: 1, clearProps: "transform" });
         gsap.set(split.lines, { yPercent: 0 });
         return () => split.revert();
       }
@@ -82,6 +82,7 @@ const App = () => {
           autoAlpha: 1,
           duration: 1,
           ease: "power3.out",
+          clearProps: "transform",
         }
       ).fromTo(
         split.lines,

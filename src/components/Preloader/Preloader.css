@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   gap: 2.5rem;
-  background: var(--color-bg);
+  background: #fff;
   color: var(--color-dark);
   will-change: transform;
 }

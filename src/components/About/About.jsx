@@ -27,7 +27,7 @@ const About = () => {
         <div className="about-top">
             <div className="t-left a-box z-10" aria-hidden="true" {...scrollAttributes('0.2')} />
             <div className="t-right a-box flex flex-col gap-5" {...scrollAttributes('-0.2')}>
-                <h1 className="uppercase font-semibold">Web development isn’t just my work — <br className="desktop-break" />it’s my passion.</h1>
+                <h1 className="uppercase ">Web development isn’t just my work — <br className="desktop-break" />it’s my passion.</h1>
                 <p className='font-extralight'>
                     I'M Full-stack developer who blends thoughtful design, clean code, and creative
                     motion to build engaging web experiences. I help businesses create websites that
