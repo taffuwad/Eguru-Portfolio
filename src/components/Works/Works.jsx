@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router";
 import PlantButton from "./MoreBtn";
 import ProCard2 from "./ProCard2";
 import ProCards from "./ProCards";
 import "./Works.css";
 
 const Works = () => {
+
+  const navigate = useNavigate();
+
   return (
     <section id="works" className="works">
       <header className="works-header">
@@ -11,7 +15,7 @@ const Works = () => {
       </header>
       <ProCards />
       <ProCard2 />
-      <div className="see-more-con">
+      <div onClick={() => navigate("/projects")} className="see-more-con">
         <PlantButton
           className="see-more-button"
           data-scroll

@@ -31,7 +31,7 @@ const End = () => {
       </div>
 
       <div className="footer-bottom footer-reveal">
-        <span>© 2026 | Dario Grigoletti</span>
+        <span>© 2026 | Eguru</span>
         <span>Privacy Policy</span>
         <span>Fuwad Talukder</span>
       </div>

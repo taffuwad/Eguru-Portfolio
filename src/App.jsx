@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Route, Routes, useLocation } from 'react-router'
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import gsap from "gsap";
@@ -12,6 +13,8 @@ import Works from './components/Works/Works';
 import Contact from './components/Contact/Contact';
 import End from './components/End/End';
 
+import Projects from './Pages/Project/Project';
+
 
 
 
@@ -21,6 +24,7 @@ const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const containerRef = useRef(null);
   const scrollInstanceRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     scrollInstanceRef.current = new LocomotiveScroll({
@@ -38,6 +42,8 @@ const App = () => {
 
   useGSAP(
     () => {
+      if (!containerRef.current) return;
+
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       // Split each h1 text into lines for the reveal animation
@@ -123,19 +129,27 @@ const App = () => {
         split.revert();
       };
     },
-    { scope: containerRef, dependencies: [isLoaded] }
+    { scope: containerRef, dependencies: [isLoaded, location.pathname] }
   );
 
   return (
-    <div ref={containerRef} className='relative bg-[#fff]' data-scroll-container>
-      <Preloader onLoaded={() => setIsLoaded(true)} />
-      <Navbar scrollInstanceRef={scrollInstanceRef} />
-      <Home />
-      <About />
-      <Works />
-      <Contact />
-      <End />
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <div ref={containerRef} className='relative bg-[#fff]' data-scroll-container>
+            <Preloader onLoaded={() => setIsLoaded(true)} />
+            <Navbar scrollInstanceRef={scrollInstanceRef} />
+            <Home />
+            <About />
+            <Works />
+            <Contact />
+            <End />
+          </div>
+        }
+      />
+      <Route path="/projects" element={<Projects />} />
+    </Routes>
   );
 };
 
