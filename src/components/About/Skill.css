@@ -1,0 +1,205 @@
+/* ---------- section shell ---------- */
+.skill-section {
+  --bg: #ffffff;
+  --fg: #171513;
+  --muted: #626d76;
+  --accent: #3272a7;
+  --container-border: var(--color-border, #ded3c6);
+
+  height: 100vh;
+  height: 100svh;
+  min-height: 640px;
+  background: #ffffff;
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- header ---------- */
+.skill-header {
+  position: relative;
+  z-index: 2;
+  padding: clamp(1.5rem, 4vh, 2.75rem) clamp(1.25rem, 4vw, 4rem) 0.5rem;
+  border-bottom: none; /* Only container border will be shown */
+  pointer-events: none;
+}
+
+.skill-kicker {
+  font-size: 0.72rem;
+  font-family: var(--font-para2, 'para-font2', sans-serif);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+
+.skill-title {
+  text-transform: uppercase;
+  font-family: var(--font-main, 'main-font', sans-serif);
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+  color: var(--fg);
+}
+
+.skill-desc {
+  max-width: 48ch;
+  font-family: var(--font-main, 'main-font', sans-serif);
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- playground container ---------- */
+.skill-playground {
+  position: relative;
+  flex: 1;
+  margin: 1rem clamp(1.25rem, 4vw, 4rem) clamp(1.25rem, 3.5vh, 2.5rem);
+  border: 1px solid var(--container-border);
+  border-radius: 8px;
+  background: #ffffff;
+  z-index: 1;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+/* ---------- chips ---------- */
+.chip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: 9999px;
+  background: #171513;
+  border: 1px solid rgba(23, 21, 19, 0.12);
+  color: #f5efe5;
+  font-family: var(--font-main, 'main-font', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  cursor: grab;
+  will-change: transform;
+  transform-origin: center center;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    opacity 220ms ease;
+  opacity: 0;
+}
+
+.skill-playground--ready .chip {
+  opacity: 1;
+}
+
+.chip__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.chip__label {
+  font-weight: 500;
+}
+
+.chip:hover {
+  background: #25221f;
+  border-color: rgba(166, 93, 59, 0.45);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+}
+
+.chip--drag {
+  cursor: grabbing;
+  background: #000000;
+  border-color: var(--accent);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+}
+
+.chip--hit {
+  border-color: var(--accent);
+}
+
+/* ---------- hint ---------- */
+.skill-hint {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.25rem;
+  font-family: var(--font-para2, 'para-font2', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.6;
+  pointer-events: none;
+  margin: 0;
+}
+
+.skill-hint__mobile { display: none; }
+
+/* ---------- reduced-motion static fallback ---------- */
+.playground--static {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  overflow: auto;
+  touch-action: auto;
+}
+
+.playground--static .chip {
+  position: relative !important;
+  transform: none !important;
+  cursor: default;
+  opacity: 1 !important;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 768px) {
+  .skill-section {
+    min-height: 100svh;
+  }
+
+  .skill-header {
+    padding: 1.5rem 1rem 0.75rem;
+  }
+
+  .skill-playground {
+    margin: 0.5rem 1rem 1rem;
+  }
+
+  .chip {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.78rem;
+  }
+
+  .skill-hint__desktop { display: none; }
+  .skill-hint__mobile  { display: inline; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    will-change: auto;
+    transition: none;
+  }
+}

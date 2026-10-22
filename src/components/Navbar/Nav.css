@@ -13,16 +13,18 @@
 
 .logo {
   flex: 0 1 auto;
+  mix-blend-mode: exclusion;
 }
 
 .logo svg {
   display: block;
   width: clamp(3rem, 14vw, 12rem);
   height: auto;
+  mix-blend-mode: exclusion;
 }
 
 .svg-path-text {
-  mix-blend-mode: exclusion;
+  mix-blend-mode: difference;
 }
 
 .nav-section {
@@ -127,7 +129,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: 7rem clamp(1.5rem, 8vw, 8rem) 2rem;
-  background: var(--color-bg);
+  background: #fff;
   color: var(--color-dark);
   visibility: hidden;
 }

@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import About from './components/About/About';
 import Preloader from './components/Preloader/Preloader';
+import Works from './components/Works/Works';
 
 gsap.registerPlugin(useGSAP, SplitText);
 
@@ -123,6 +124,7 @@ const App = () => {
       <Navbar />
       <Home />
       <About />
+      <Works />
     </div>
   );
 };

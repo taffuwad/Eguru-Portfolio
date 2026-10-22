@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './About.css'
 import DownloadToggle from './Cv'
 import CursorEyes from './Eyes'
+import Skill from './Skill'
 
 const About = () => {
   const [enableParallax, setEnableParallax] = useState(
@@ -21,12 +22,13 @@ const About = () => {
     : {}
 
   return (
+    <>
     <div id="about" className="about w-full">
         <div className="about-top">
             <div className="t-left a-box z-10" aria-hidden="true" {...scrollAttributes('0.2')} />
             <div className="t-right a-box flex flex-col gap-5" {...scrollAttributes('-0.2')}>
-                <h1 className="uppercase">Web development isn’t just my work — <br className="desktop-break" />it’s my passion.</h1>
-                <p>
+                <h1 className="uppercase font-semibold">Web development isn’t just my work — <br className="desktop-break" />it’s my passion.</h1>
+                <p className='font-extralight'>
                     I'M Full-stack developer who blends thoughtful design, clean code, and creative
                     motion to build engaging web experiences. I help businesses create websites that
                     capture attention, deliver smoother user experiences, and turn visitors into potential
@@ -51,6 +53,8 @@ const About = () => {
             </div>
         </div>
     </div>
+    <Skill />
+    </>
   )
 }
 
