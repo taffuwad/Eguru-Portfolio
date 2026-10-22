@@ -3,30 +3,10 @@ import Logo from '../Navbar/Logo'
 import './Footer.css'
 
 const Footer = () => {
-  const footerRef = useRef(null)
-
-  useEffect(() => {
-    const footer = footerRef.current
-    if (!footer) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          footer.classList.add('is-visible')
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 }
-    )
-
-    footer.classList.add('is-observed')
-    observer.observe(footer)
-
-    return () => observer.disconnect()
-  }, [])
+ 
 
   return (
-    <footer ref={footerRef} className="footer">
+    <footer className="footer">
       <div className="footer-main">
         <div className="footer-brand footer-reveal">
           <Logo />
