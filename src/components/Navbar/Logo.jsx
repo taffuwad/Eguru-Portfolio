@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Logo = ({ scrollInstanceRef }) => {
   const toHome = (event) => {
     const target = document.getElementById("home");
