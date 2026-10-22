@@ -1,37 +1,117 @@
-.works{
-    padding: 3rem 4rem;
+.works {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4rem);
+}
+
+.works-header {
+  width: 100%;
+}
+
+.works-title {
+  margin: 0;
+  font-size: clamp(4rem, 14vw, 11rem);
+  font-weight: 500;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+.works-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(0.5rem, 1.25vw, 1.25rem);
+}
+
+.pro-card {
+  min-width: 0;
+  aspect-ratio: 0.52;
+  background-color: var(--color-border);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  will-change: transform;
+}
+
+.card-restaurant {
+  margin-top: 0;
+  background-image: url("../../assets/works-ui/resturent-p.jpg");
+}
+
+.card-shop {
+  margin-top: clamp(2rem, 7vw, 7rem);
+  background-image: url("../../assets/works-ui/shop.jpg");
+}
+
+.card-real-estate {
+  margin-top: clamp(4rem, 14vw, 14rem);
+  background-image: url("../../assets/works-ui/real-state-demo.jpg");
+}
+
+.card-restaurant-concept {
+  margin-top: clamp(6rem, 21vw, 21rem);
+  background-image: url("../../assets/works-ui/resturent.jpg");
+}
+
+.see-more-con {
+  display: flex;
+  justify-content: center;
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
 }
 
 
 
+@media (max-width: 1024px) {
+  .works-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(0.75rem, 2vw, 1.5rem);
+    row-gap: clamp(1rem, 3vw, 2rem);
+  }
 
+  .pro-card {
+    aspect-ratio: 0.9;
+  }
 
+  .card-shop {
+    margin-top: clamp(1.5rem, 5vw, 4rem);
+  }
 
+  .card-real-estate {
+    margin-top: 0;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.pro-card{
-    background: url('../../assets/works-ui/resturent-p.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  .card-restaurant-concept {
+    margin-top: clamp(1.5rem, 5vw, 4rem);
+  }
 }
-.see-more{
-    transition: 0.5s ease;
+
+@media (max-width: 600px) {
+  .works {
+    gap: 2rem;
+    padding: 3.5rem 1rem;
+  }
+
+  .works-title {
+    font-size: clamp(3.75rem, 19vw, 7rem);
+  }
+
+  .works-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .pro-card {
+    aspect-ratio: 1.15;
+    margin-top: 0;
+    border-radius: 1rem;
+  }
+
+
 }
-.see-more:hover{
-    background: var(--color-accent-hover);
-    color: #fff;
-}
+
+

@@ -1,0 +1,724 @@
+/* ============================================================
+   CONTACT — React component styles
+   Pairs with Contact.jsx (GSAP + Locomotive Scroll)
+   ============================================================ */
+
+/* ---------- Section shell ---------------------------------- */
+.contact {
+  min-height: 100vh;
+  width: 100%;
+  padding: 8vw 3.7vw 0 4vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact .con-top .text {
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Character spans for the masked stagger reveal */
+.contact .contact-char {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-origin: 50% 100%;
+}
+
+/* ---------- "T(wheel) GATHER" heading ---------------------- */
+.contact .con-top .box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.contact .con-top .box h1 {
+  font-family: var(--main);
+  font-size: 7vw;
+  letter-spacing: -0.4rem;
+  color: #222;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* The wheel replaces the "O" in "TO GATHER" */
+.contact .con-top .box h1 .title-o {
+  flex: 0 0 auto;
+  width: 12em;
+  height: 12em;
+  font-size: 0.083333em;
+  transform-origin: center;
+}
+
+.contact .con-top img {
+  height: 5vw;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin-top: 1vw;
+  border-radius: 10px;
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   HAMSTER + WHEEL  (pure CSS animation)
+   ============================================================ */
+.wheel-and-hamster {
+  --dur: 1s;
+  position: relative;
+  width: 12em;
+  height: 12em;
+  font-size: 14px;
+}
+
+.wheel,
+.hamster,
+.hamster div,
+.spoke {
+  position: absolute;
+}
+
+.wheel,
+.spoke {
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wheel {
+  background: radial-gradient(
+    100% 100% at center,
+    hsla(0, 0%, 60%, 0) 47.8%,
+    hsl(0, 0%, 60%) 48%
+  );
+  z-index: 2;
+}
+
+.hamster {
+  animation: hamster var(--dur) ease-in-out infinite;
+  top: 50%;
+  left: calc(50% - 3.5em);
+  width: 7em;
+  height: 3.75em;
+  transform: rotate(4deg) translate(-0.8em, 1.85em);
+  transform-origin: 50% 0;
+  z-index: 1;
+}
+
+.hamster__head {
+  animation: hamsterHead var(--dur) ease-in-out infinite;
+  background: hsl(30, 90%, 55%);
+  border-radius: 70% 30% 0 100% / 40% 25% 25% 60%;
+  box-shadow: 0 -0.25em 0 hsl(30, 90%, 80%) inset,
+    0.75em -1.55em 0 hsl(30, 90%, 90%) inset;
+  top: 0;
+  left: -2em;
+  width: 2.75em;
+  height: 2.5em;
+  transform-origin: 100% 50%;
+}
+
+.hamster__ear {
+  animation: hamsterEar var(--dur) ease-in-out infinite;
+  background: hsl(0, 90%, 85%);
+  border-radius: 50%;
+  box-shadow: -0.25em 0 hsl(30, 90%, 55%) inset;
+  top: -0.25em;
+  right: -0.25em;
+  width: 0.75em;
+  height: 0.75em;
+  transform-origin: 50% 75%;
+}
+
+.hamster__eye {
+  animation: hamsterEye var(--dur) linear infinite;
+  background-color: hsl(0, 0%, 0%);
+  border-radius: 50%;
+  top: 0.375em;
+  left: 1.25em;
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.hamster__nose {
+  background: hsl(0, 90%, 75%);
+  border-radius: 35% 65% 85% 15% / 70% 50% 50% 30%;
+  top: 0.75em;
+  left: 0;
+  width: 0.2em;
+  height: 0.25em;
+}
+
+.hamster__body {
+  animation: hamsterBody var(--dur) ease-in-out infinite;
+  background: hsl(30, 90%, 90%);
+  border-radius: 50% 30% 50% 30% / 15% 60% 40% 40%;
+  box-shadow: 0.1em 0.75em 0 hsl(30, 90%, 55%) inset,
+    0.15em -0.5em 0 hsl(30, 90%, 80%) inset;
+  top: 0.25em;
+  left: 2em;
+  width: 4.5em;
+  height: 3em;
+  transform-origin: 17% 50%;
+  transform-style: preserve-3d;
+}
+
+.hamster__limb--fr,
+.hamster__limb--fl {
+  clip-path: polygon(0 0, 100% 0, 70% 80%, 60% 100%, 0% 100%, 40% 80%);
+  top: 2em;
+  left: 0.5em;
+  width: 1em;
+  height: 1.5em;
+  transform-origin: 50% 0;
+}
+
+.hamster__limb--fr {
+  animation: hamsterFRLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30, 90%, 80%) 80%, hsl(0, 90%, 75%) 80%);
+  transform: rotate(15deg) translateZ(-1px);
+}
+
+.hamster__limb--fl {
+  animation: hamsterFLLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30, 90%, 90%) 80%, hsl(0, 90%, 85%) 80%);
+  transform: rotate(15deg);
+}
+
+.hamster__limb--br,
+.hamster__limb--bl {
+  border-radius: 0.75em 0.75em 0 0;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 30%,
+    70% 90%,
+    70% 100%,
+    30% 100%,
+    40% 90%,
+    0% 30%
+  );
+  top: 1em;
+  left: 2.8em;
+  width: 1.5em;
+  height: 2.5em;
+  transform-origin: 50% 30%;
+}
+
+.hamster__limb--br {
+  animation: hamsterBRLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30, 90%, 80%) 90%, hsl(0, 90%, 75%) 90%);
+  transform: rotate(-25deg) translateZ(-1px);
+}
+
+.hamster__limb--bl {
+  animation: hamsterBLLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30, 90%, 90%) 90%, hsl(0, 90%, 85%) 90%);
+  transform: rotate(-25deg);
+}
+
+.hamster__tail {
+  animation: hamsterTail var(--dur) linear infinite;
+  background: hsl(0, 90%, 85%);
+  border-radius: 0.25em 50% 50% 0.25em;
+  box-shadow: 0 -0.2em 0 hsl(0, 90%, 75%) inset;
+  top: 1.5em;
+  right: -0.5em;
+  width: 1em;
+  height: 0.5em;
+  transform: rotate(30deg) translateZ(-1px);
+  transform-origin: 0.25em 0.25em;
+}
+
+.spoke {
+  animation: spoke var(--dur) linear infinite;
+  background: radial-gradient(
+      100% 100% at center,
+      hsl(0, 0%, 60%) 4.8%,
+      hsla(0, 0%, 60%, 0) 5%
+    ),
+    linear-gradient(
+        hsla(0, 0%, 55%, 0) 46.9%,
+        hsl(0, 0%, 65%) 47% 52.9%,
+        hsla(0, 0%, 65%, 0) 53%
+      )
+      50% 50% / 99% 99% no-repeat;
+}
+
+/* ---------- Hamster keyframes ------------------------------ */
+@keyframes hamster {
+  from,
+  to {
+    transform: rotate(4deg) translate(-0.8em, 1.85em);
+  }
+  50% {
+    transform: rotate(0) translate(-0.8em, 1.85em);
+  }
+}
+
+@keyframes hamsterHead {
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(0);
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes hamsterEye {
+  from,
+  90%,
+  to {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes hamsterEar {
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(0);
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes hamsterBody {
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(0);
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(-2deg);
+  }
+}
+
+@keyframes hamsterFRLimb {
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(50deg) translateZ(-1px);
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(-30deg) translateZ(-1px);
+  }
+}
+
+@keyframes hamsterFLLimb {
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(-30deg);
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(50deg);
+  }
+}
+
+@keyframes hamsterBRLimb {
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(-60deg) translateZ(-1px);
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(20deg) translateZ(-1px);
+  }
+}
+
+@keyframes hamsterBLLimb {
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(20deg);
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(-60deg);
+  }
+}
+
+@keyframes hamsterTail {
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(30deg) translateZ(-1px);
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(10deg) translateZ(-1px);
+  }
+}
+
+@keyframes spoke {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-1turn);
+  }
+}
+
+/* ============================================================
+   BOTTOM — form
+   ============================================================ */
+.con-bottom {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  height: 60%;
+  position: relative;
+}
+
+.con-bottom form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.con-bottom .sec {
+  display: flex;
+  margin-bottom: 1vw;
+  will-change: transform, opacity;
+}
+
+.con-bottom .sec span {
+  padding-right: 2vw;
+  text-align: right;
+  font-weight: 100;
+  color: #222;
+  min-width: 7ch;
+}
+
+.con-bottom .sec input {
+  border: none;
+  background: none;
+  font-family: var(--main);
+  font-size: 4vw;
+  outline: none;
+  color: #222;
+  text-transform: uppercase;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.con-bottom .sec input:focus {
+  outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #acabab;
+}
+
+.con-bottom .sec .massage {
+  background: none;
+  border: none;
+  font-family: var(--main);
+  font-size: 3vw;
+  outline: none;
+  width: 100%;
+  height: 10rem;
+  color: #222;
+  padding: 1vw;
+  resize: none;
+  flex: 1 1 auto;
+}
+
+.con-bottom .sec .email {
+  width: 60%;
+  text-transform: lowercase;
+}
+
+/* ---------- Submit button ---------------------------------- */
+.con-bottom .send {
+  background-color: #222;
+  color: #fff;
+  border: none;
+  font-family: var(--main);
+  font-size: 2vw;
+  padding: 1vw 3vw;
+  border-radius: 1rem;
+  display: block;
+  position: relative;
+  margin: 1rem 2vw 4vw auto;
+  cursor: pointer;
+  z-index: 5;
+  will-change: transform;
+  transition: background-color 0.3s ease-out;
+}
+
+.con-bottom .send:hover {
+  background-color: #353535;
+}
+
+.con-bottom .send:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+/* ---------- Status message --------------------------------- */
+.contact-form-status {
+  margin: 1rem 2vw 0 auto;
+  color: #222;
+  font-family: var(--main);
+  font-size: 1rem;
+  text-align: right;
+  letter-spacing: 0.02em;
+  will-change: transform, opacity;
+}
+
+
+
+
+
+
+@media (min-width:768px) {
+    .con-top .text{
+        font-size: clamp(1.4rem, 8vw, 5rem);
+    }
+}
+/* ============================================================
+   RESPONSIVE — 1280px
+   ============================================================ */
+@media (max-width: 1280px) {
+  .contact {
+    min-height: 90vh;
+    padding: 4vw 3.7vw 0 3.7vw;
+    gap: 7vw;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — 1024px (tablet)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .contact {
+    min-height: 88vh;
+    padding: 8vw 3.7vw 0 3.7vw;
+    gap: 7vw;
+  }
+
+  .contact .con-top .box h1 {
+    letter-spacing: -0.05rem;
+  }
+
+  .con-bottom .send {
+    font-size: 3vw;
+    padding: 2vw 7vw;
+    margin: 1rem 0 0 auto;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — 768px (mobile landscape / small tablet)
+   ============================================================ */
+@media (max-width: 768px) {
+  .contact {
+    height: auto;
+    min-height: 80vh;
+    padding: 1vw 5vw 6vw;
+    gap: 2.5rem;
+  }
+
+  .contact .con-top .text {
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.12rem;
+  }
+
+  .contact .con-top .box {
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .contact .con-top .box h1 {
+    flex: 1 1 100%;
+    min-width: 0;
+    white-space: nowrap;
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    letter-spacing: -0.12rem;
+  }
+
+  .contact .con-top img {
+    height: clamp(2rem, 5vw, 3.5rem);
+    margin-top: 0;
+  }
+
+  .con-bottom {
+    height: auto;
+    gap: 0.8rem;
+  }
+
+  .con-bottom .sec {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .con-bottom .sec span {
+    width: 100%;
+    padding-right: 0;
+    text-align: left;
+    font-size: 0.78rem;
+  }
+
+  .con-bottom .sec input,
+  .con-bottom .sec .massage {
+    width: 100%;
+    font-size: clamp(1.05rem, 2.8vw, 2rem);
+  }
+
+  .con-bottom .sec .massage {
+    min-height: 7rem;
+    height: 8rem;
+  }
+
+  .con-bottom .send {
+    font-size: 3vw;
+    padding: 2vw 7vw;
+    margin: 1rem 0 0 auto;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — 480px (small mobile)
+   ============================================================ */
+@media (max-width: 480px) {
+  .contact {
+    height: auto;
+    min-height: 0;
+    width: 100%;
+    padding: 5vw 7vw 0 7vw;
+    gap: 8vw;
+  }
+
+  .contact .con-top .text {
+    font-size: clamp(3rem, 15vw, 4rem);
+    letter-spacing: -0.08rem;
+    line-height: 0.9;
+  }
+
+  .contact .con-top .box h1 {
+    font-size: clamp(2rem, 12vw, 3rem);
+    letter-spacing: -0.08rem;
+  }
+
+  .contact #con-img {
+    display: none;
+  }
+
+  .con-bottom .sec {
+    margin-bottom: 1rem;
+  }
+
+  .con-bottom .sec span {
+    font-size: 0.72rem;
+  }
+
+  .con-bottom .sec input,
+  .con-bottom .sec .massage {
+    font-size: clamp(0.95rem, 4vw, 1.3rem);
+  }
+
+  .con-bottom .send {
+    font-size: 7vw;
+    padding: 3vw 10vw;
+    margin: 1rem 0 8vw auto;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — 375px (very small mobile)
+   ============================================================ */
+@media (max-width: 375px) {
+  .contact {
+    height: auto;
+    min-height: 0;
+    padding: 5vw 7vw 2vw 7vw;
+    gap: 10vw;
+  }
+
+  .con-bottom .send {
+    margin-bottom: 10vw;
+  }
+}
+
+/* ============================================================
+   Reduced motion — keep the UI stable, kill the hamster + reveals
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hamster,
+  .hamster div,
+  .spoke,
+  .wheel-and-hamster .hamster__head,
+  .wheel-and-hamster .hamster__ear,
+  .wheel-and-hamster .hamster__eye,
+  .wheel-and-hamster .hamster__body,
+  .wheel-and-hamster .hamster__limb,
+  .wheel-and-hamster .hamster__tail {
+    animation: none !important;
+  }
+
+  .contact .contact-char,
+  .contact .con-top .box h1,
+  .contact .con-bottom .sec,
+  .contact .send,
+  .contact-form-status {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

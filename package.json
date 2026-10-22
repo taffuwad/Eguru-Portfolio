@@ -15,6 +15,7 @@
     "gsap": "^3.15.0",
     "locomotive-scroll": "^5.0.1",
     "matter-js": "^0.20.0",
+    "motion": "^14.5.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "tailwindcss": "^4.3.3"
