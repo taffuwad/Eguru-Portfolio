@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import "./Nav.css";
@@ -12,6 +13,18 @@ const LINKS = [
 
 const FullscreenNav = ({ isOpen, onClose }) => {
   const navRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavigate = (event, id) => {
+    if (document.getElementById(id)) return;
+
+    if (location.pathname !== "/") {
+      event.preventDefault();
+      onClose();
+      navigate(`/#${id}`);
+    }
+  };
 
   useGSAP(
     () => {
@@ -124,7 +137,10 @@ const FullscreenNav = ({ isOpen, onClose }) => {
               className="fullscreen-nav-link"
               href={`#${id}`}
               key={id}
-              onClick={onClose}
+              onClick={(event) => {
+                onClose();
+                handleNavigate(event, id);
+              }}
             >
               <span>{label}</span>
               

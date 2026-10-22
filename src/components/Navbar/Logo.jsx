@@ -1,9 +1,19 @@
 import React from 'react'
+import { useLocation, useNavigate } from 'react-router'
 
 const Logo = ({ scrollInstanceRef }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const toHome = (event) => {
     const target = document.getElementById("home");
-    if (!target) return;
+    if (!target) {
+      if (location.pathname !== "/") {
+        event.preventDefault();
+        navigate("/#home");
+      }
+      return;
+    }
 
     event.preventDefault();
 

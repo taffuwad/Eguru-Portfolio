@@ -1,5 +1,6 @@
 // NavSection.jsx
 import { useCallback, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import "./Nav.css";
 
 const LINKS = [
@@ -37,6 +38,8 @@ function StaggeredText({ text }) {
 
 function NavSection({ lenis = null }) {
   const [activeId, setActiveId] = useState(LINKS[0].id);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   /* Track which section is in view (keeps aria-current in sync) */
   useEffect(() => {
@@ -63,7 +66,13 @@ function NavSection({ lenis = null }) {
   const handleNavigate = useCallback(
     (event, id) => {
       const target = document.getElementById(id);
-      if (!target) return; // let the browser handle the hash
+      if (!target) {
+        if (location.pathname !== "/") {
+          event.preventDefault();
+          navigate(`/#${id}`);
+        }
+        return;
+      }
 
       event.preventDefault();
       setActiveId(id);
@@ -80,14 +89,14 @@ function NavSection({ lenis = null }) {
 
       window.history.replaceState(null, "", `#${id}`);
     },
-    [lenis]
+    [lenis, location.pathname, navigate]
   );
 
   return (
     <nav className="nav-section" aria-label="Main navigation">
       <div className="nav-list">
         {LINKS.map(({ id, label }) => {
-          const isActive = activeId === id;
+          const isActive = location.pathname === "/" && activeId === id;
 
           return (
             <a

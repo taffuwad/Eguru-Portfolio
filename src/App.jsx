@@ -40,6 +40,24 @@ const App = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash) return undefined;
+
+    const frame = window.requestAnimationFrame(() => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (!target) return;
+
+      const scrollInstance = scrollInstanceRef.current;
+      if (typeof scrollInstance?.scrollTo === "function") {
+        scrollInstance.scrollTo(target, { offset: 0, duration: 1.2 });
+      } else {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.hash, location.pathname]);
+
   useGSAP(
     () => {
       if (!containerRef.current) return;
