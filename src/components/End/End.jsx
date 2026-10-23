@@ -42,7 +42,7 @@ const End = () => {
 
       <div className="footer-bottom footer-reveal">
         <span>© 2026 | Eguru</span>
-        <span>Privacy Policy</span>
+        <span>Privacy Policy | fuwadtalukderdev@gmail.com</span>
         <span>Fuwad Talukder</span>
       </div>
     </footer>

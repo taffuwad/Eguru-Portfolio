@@ -1,0 +1,11 @@
+@media (max-width:768px) {
+    .pro-vid{
+        height: 40vh;
+    }
+}
+
+@media (max-width:480px) {
+    .pro-vid{
+        height: 30vh;
+    }
+}

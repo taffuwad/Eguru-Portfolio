@@ -26,7 +26,7 @@
 
 @theme {
   --font-main: 'main-font';
-  --font-para: 'para';
+  --font-para: 'para-font';
   --font-para2: 'para-font2';
 
   /* Backgrounds */
@@ -50,7 +50,7 @@
 :root{
 
   --main: 'main-font';
-  --para: 'para';
+  --para: 'para-font';
   --para2: 'para-font2';
 
 

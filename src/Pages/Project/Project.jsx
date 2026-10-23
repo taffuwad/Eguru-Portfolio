@@ -5,6 +5,7 @@ import ProjectCard from './ProjectCard'
 import Navbar from '../../components/Navbar/Navbar'
 import End from '../../components/End/End'
 import vid1 from '../../assets/videos/vid1.mp4'
+import './Project.css'
 
 
 const Projects = () => {
@@ -43,7 +44,7 @@ const Projects = () => {
       <Navbar />
       <main className='lg:p-4 p-2'>
         <div className='pt-[45vh]'>
-          <h2 className='font-[font2] lg:text-[9.5vw] text-7xl uppercase'>Projets</h2>
+          <h2 className='font-main lg:text-[9.5vw] text-7xl uppercase'>Projets</h2>
         </div>
         <div className='-lg:mt-20 lol'>
           {projects.map(function (elem, idx) {
@@ -52,7 +53,7 @@ const Projects = () => {
             </div>
           })}
         </div>
-        <div className="pro-vid h-[80vh] w-full">
+        <div className="pro-vid h-[50svh]  w-full overflow-hidden sm:h-[60svh] lg:h-[80vh]">
           <video
             className='h-full w-full object-cover'
             src={vid1}
