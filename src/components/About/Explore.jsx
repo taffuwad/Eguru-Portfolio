@@ -6,7 +6,7 @@ const Explore = () => {
 
   return (
     <>
-        <button onClick={() => navigate("/aboutpage#about-page")} className='explore flex justify-center items-center whitespace-nowrap uppercase text-base sm:text-lg md:text-2xl text-accent px-5 sm:px-8 md:px-12 lg:px-20 py-2 rounded-full border-2 border-accent'>
+        <button onClick={() => navigate("/aboutpage")} className='explore flex justify-center items-center whitespace-nowrap uppercase text-base sm:text-lg md:text-2xl text-accent px-5 sm:px-8 md:px-12 lg:px-20 py-2 rounded-full border-2 border-accent'>
             Explore
         </button>
     </>

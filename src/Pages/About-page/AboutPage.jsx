@@ -43,6 +43,7 @@ export function AboutPage() {
     }
 
     const lenis = new Lenis({ autoRaf: true });
+    lenis.scrollTo(0, { immediate: true });
     lenis.on('scroll', ScrollTrigger.update);
 
     return () => {
