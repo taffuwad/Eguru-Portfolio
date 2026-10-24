@@ -14,9 +14,9 @@
 
 .preloader-counter {
     display: flex;
-  font-size: 30vw;
+  font-size: 25vw;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.1em;
 }
 
 .preloader-words {

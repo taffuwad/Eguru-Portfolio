@@ -20,7 +20,7 @@ const Preloader = ({ onLoaded }) => {
       const tl = gsap.timeline({ paused: true });
 
       tl.to(counter, {
-        value: 99,
+        value: 100,
         duration: reduce ? 0.2 : 1.6,
         ease: "power2.inOut",
         onUpdate: () => {
