@@ -5,6 +5,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import './AboutPage.css';
+import Navbar from '../../components/Navbar/Navbar';
+import End from '../../components/End/End';
 
 export function AboutPage() {
   const parallaxRef = useRef(null);
@@ -53,7 +55,9 @@ export function AboutPage() {
   }, []);
 
   return (
-    <div className="parallax relative isolate bg-[#0b0b0b] text-white" ref={parallaxRef}>
+    <>
+    <Navbar />
+    <div id='about-page' className="parallax relative isolate bg-[#0b0b0b] -mt-2 text-white" ref={parallaxRef}>
       {/* ============ HERO ============ */}
       <section className="parallax__header relative h-screen w-full overflow-hidden">
         <div className="parallax__visuals absolute inset-0">
@@ -86,7 +90,7 @@ export function AboutPage() {
               className="parallax__layer-title absolute inset-0 flex items-center justify-center will-change-transform"
             >
               <h2 className="parallax__title select-none text-center text-[clamp(4rem,14vw,12rem)] font-black uppercase leading-none tracking-tighter drop-shadow-[0_10px_40px_rgba(0,0,0,0.55)]">
-                Parallax
+                Fuwad Talukder
               </h2>
             </div>
             <img
@@ -105,20 +109,13 @@ export function AboutPage() {
       </section>
 
       {/* ============ CONTENT ============ */}
-      <section className="parallax__content relative flex min-h-screen w-full items-center justify-center bg-[#0b0b0b]">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 160 160"
-          fill="none"
-          aria-hidden="true"
-          className="osmo-icon-svg mx-auto h-auto w-full max-w-[10rem] text-white md:max-w-[14rem]"
-        >
-          <path
-            d="M94.8284 53.8578C92.3086 56.3776 88 54.593 88 51.0294V0H72V59.9999C72 66.6273 66.6274 71.9999 60 71.9999H0V87.9999H51.0294C54.5931 87.9999 56.3777 92.3085 53.8579 94.8283L18.3431 130.343L29.6569 141.657L65.1717 106.142C67.684 103.63 71.9745 105.396 72 108.939V160L88.0001 160L88 99.9999C88 93.3725 93.3726 87.9999 100 87.9999H160V71.9999H108.939C105.407 71.9745 103.64 67.7091 106.12 65.1938L106.142 65.1716L141.657 29.6568L130.343 18.3432L94.8284 53.8578Z"
-            fill="currentColor"
-          />
-        </svg>
+      <section className="parallax__content relative min-h-screen w-full  bg-[#0b0b0b]">
+        
+
       </section>
     </div>
+
+    <End />
+    </>
   );
 }

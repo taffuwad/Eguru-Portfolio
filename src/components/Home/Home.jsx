@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div
       id="home"
-      className='home relative h-screen w-full flex justify-center items-end'
+      className='home z-10 relative h-screen w-full flex justify-center items-end'
     >
       <p className="hpara absolute left-20 top-40 ">
         I’m a full-stack developer based in Bangladesh, drawn to where<br></br>
