@@ -3,6 +3,23 @@
 
 .lt-word {
   display: flex;
+  max-width: 100%;
+  white-space: nowrap;
+  font-size: clamp(3rem, 20vw, 16rem);
+}
+
+.talk {
+  box-sizing: border-box;
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  gap: clamp(0.25rem, 1.5vh, 1rem);
+  touch-action: pan-y;
+}
+
+.lt-talk {
+  font-size: clamp(4rem, 31vw, 28rem);
 }
 
 /* the word itself tilts in 3D toward the cursor (JS sets the transform) */
@@ -35,6 +52,30 @@
 
   filter: drop-shadow(0 calc(var(--heat, 0) * 18px) calc(var(--heat, 0) * 22px)
     rgba(0, 0, 0, calc(var(--heat, 0) * 0.45)));
+}
+
+@media (min-width: 640px) {
+  .lt-word {
+    font-size: clamp(7rem, 18vw, 16rem);
+  }
+
+  .lt-talk {
+    font-size: clamp(10rem, 30vw, 28rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .talk {
+    padding-inline: 0.75rem;
+  }
+
+  .lt-word {
+    font-size: clamp(2.5rem, 19vw, 4.25rem);
+  }
+
+  .lt-talk {
+    font-size: clamp(3.5rem, 30vw, 6.75rem);
+  }
 }
 
 /* click particle burst */
@@ -70,7 +111,20 @@
   .lt-talk {
     transition: none;
   }
+
+  .lt-letter {
+    transform: none !important;
+  }
+
   .lt-particle {
     display: none;
   }
+}
+@media (max-width:480px) {
+    .talk{
+        min-height: 50vh;
+    }
+    .mm-word{
+        margin-left: -40vw;
+    }
 }

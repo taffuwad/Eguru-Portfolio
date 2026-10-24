@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect } from "react";
 import "./Talk.css";
 
 /**
@@ -167,15 +167,14 @@ export default function LetsTalk() {
       onPointerMove={onMove}
       onPointerLeave={onLeave}
       onClick={handleClick}
-      
-      className="talk select-none h-screen w-full uppercase flex flex-col justify-center items-center overflow-hidden cursor-pointer relative"
+      className="talk relative flex w-full cursor-pointer flex-col items-center justify-center overflow-hidden px-4 py-8 uppercase select-none sm:px-8"
     >
       <div ref={burstRef} className="lt-burst" aria-hidden="true" />
 
       <h2
         ref={letsRef}
         aria-label="Let's"
-        className="lt-word font-bold leading-[0.8] -ml-[50vw] text-[clamp(4rem,20vw,18rem)]"
+        className="lt-word mm-word -ml-[50vw] lt-lets font-bold leading-[0.8]"
       >
         {split("Let's")}
       </h2>
@@ -183,7 +182,7 @@ export default function LetsTalk() {
       <h1
         ref={talkRef}
         aria-label="Talk"
-        className="lt-word lt-talk font-black leading-[0.8] text-[clamp(4rem,50vw,35rem)]"
+        className="lt-word lt-talk font-black leading-[0.8]"
       >
         {split("Talk")}
       </h1>
