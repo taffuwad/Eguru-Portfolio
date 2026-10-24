@@ -90,7 +90,7 @@
 
 .CV {
     width: fit-content;
-    margin-top: clamp(0.5rem, 1vw, 1rem);
+    
 }
 
 .cv-download {
@@ -145,6 +145,20 @@
 
 .cv-download:hover .cv-download-icon {
     transform: translateY(2px);
+}
+
+
+.btn-con{
+    margin-top: clamp(0.5rem, 1vw, 1rem);
+}
+
+.explore{
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+.explore:hover{
+    background: var(--color-accent);
+    color: #fff;
 }
 
 @media (prefers-reduced-motion: reduce) {

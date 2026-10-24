@@ -1,0 +1,31 @@
+/* src/components/ui/Parallax.css */
+
+/* Prevent accidental horizontal scroll from the extended layers container */
+.parallax {
+  overflow-x: clip;
+}
+
+/* GPU hints + keep text crisp while transformed */
+.parallax__layers,
+.parallax__layer-img,
+.parallax__layer-title {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Title typography — Tailwind handles the rest */
+.parallax__title {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .parallax__layers,
+  .parallax__layer-img,
+  .parallax__layer-title {
+    will-change: auto;
+    transform: none !important;
+  }
+}

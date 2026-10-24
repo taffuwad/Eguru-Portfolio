@@ -14,6 +14,8 @@ import Contact from './components/Contact/Contact';
 import End from './components/End/End';
 
 import Projects from './Pages/Project/Project';
+import { AboutPage } from './Pages/About-page/AboutPage';
+
 
 
 
@@ -27,6 +29,11 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (location.pathname === "/aboutpage") {
+      scrollInstanceRef.current = null;
+      return undefined;
+    }
+
     scrollInstanceRef.current = new LocomotiveScroll({
       lenisOptions: {
         lerp: 0.08,
@@ -38,7 +45,7 @@ const App = () => {
       scrollInstanceRef.current?.destroy();
       scrollInstanceRef.current = null;
     };
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (location.pathname !== "/" || !location.hash) return undefined;
@@ -167,6 +174,7 @@ const App = () => {
         }
       />
       <Route path="/projects" element={<Projects />} />
+      <Route path="/aboutpage" element={<AboutPage />} />
     </Routes>
   );
 };

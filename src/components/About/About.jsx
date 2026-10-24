@@ -3,6 +3,8 @@ import './About.css'
 import DownloadToggle from './Cv'
 import CursorEyes from './Eyes'
 import Skill from './Skill'
+import Explore from './Explore'
+
 
 const About = () => {
   const [enableParallax, setEnableParallax] = useState(
@@ -45,8 +47,10 @@ const About = () => {
                     I blend clean design, creative motion, and modern web technologies to build websites that don’t just look good —
                     they feel alive. For me, every project is an opportunity to experiment, explore, and create something people remember.
                 </p>
-
-                <DownloadToggle />
+                <div className="btn-con p-0 flex flex-wrap justify-center items-center gap-1">
+                    <DownloadToggle />
+                    <Explore />
+                </div>
             </div>
             <div className="b-right a-box relative" aria-hidden="true" {...scrollAttributes('0.2')}>
                 <CursorEyes />

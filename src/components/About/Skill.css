@@ -1,10 +1,10 @@
 /* ---------- section shell ---------- */
 .skill-section {
   --bg: #ffffff;
-  --fg: #171513;
+  --fg: #131517;
   --muted: #626d76;
   --accent: #3272a7;
-  --container-border: var(--color-border, #ded3c6);
+  --container-border: var(--color-border, #c6d3de);
 
   height: 100vh;
   height: 100svh;
