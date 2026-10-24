@@ -1,0 +1,76 @@
+/* LetsTalk.css v2 — spring-physics letters, heat gradient, particles.
+   Layout comes from Tailwind; this file is only the letter magic. */
+
+.lt-word {
+  display: flex;
+}
+
+/* the word itself tilts in 3D toward the cursor (JS sets the transform) */
+.lt-talk {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Every letter: a jelly body + a heat gradient that sweeps in on approach.
+   --heat (0..1) is written by the physics loop. */
+.lt-letter {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform;
+
+  background-image: linear-gradient(
+    100deg,
+    currentColor 0%,
+    currentColor 40%,
+    #4592d1 62%,
+    #ffffff 82%,
+    #3272a7 100%
+  );
+  background-size: 280% 100%;
+  background-position: calc(100% - var(--heat, 0) * 100%) 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  filter: drop-shadow(0 calc(var(--heat, 0) * 18px) calc(var(--heat, 0) * 22px)
+    rgba(0, 0, 0, calc(var(--heat, 0) * 0.45)));
+}
+
+/* click particle burst */
+.lt-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lt-particle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 35%, #74bdf8, #3272a7 70%);
+  animation: lt-pop 0.72s cubic-bezier(0.17, 0.67, 0.35, 1) forwards;
+}
+
+@keyframes lt-pop {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0.1);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-talk {
+    transition: none;
+  }
+  .lt-particle {
+    display: none;
+  }
+}

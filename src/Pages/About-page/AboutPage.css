@@ -1,5 +1,7 @@
 /* src/components/ui/Parallax.css */
-
+*{
+    font-family: var(--font-main);
+}
 /* Prevent accidental horizontal scroll from the extended layers container */
 .parallax {
   overflow-x: clip;
@@ -15,8 +17,8 @@
 
 /* Title typography — Tailwind handles the rest */
 .parallax__title {
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-main);
+
   text-rendering: optimizeLegibility;
 }
 
@@ -27,5 +29,79 @@
   .parallax__layer-title {
     will-change: auto;
     transform: none !important;
+  }
+}
+
+
+/* src/components/About.css */
+
+/* Font stacks */
+.about-page {
+  --font-sans: var(--font-main)
+  --font-serif: var(--font-main);
+  font-family: var(--font-main);
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+.about-page-inner {
+  width: 100%;
+  max-width: 100rem;
+  margin-inline: auto;
+}
+
+.about-intro-grid {
+  container-type: inline-size;
+}
+
+.about-intro-grid,
+.about-image-grid {
+  min-width: 0;
+}
+
+.about-statement {
+  font-size: clamp(1.8rem, 4.1vw, 4.9rem);
+  font-size: clamp(1.8rem, 4.1cqi, 4.9rem);
+  white-space: nowrap;
+}
+
+.about-copy {
+  min-width: 0;
+}
+
+.hero-about-img {
+  max-height: clamp(16rem, 100vh, 95rem);
+}
+
+.font-fraunces {
+  font-family: var(--font-main);
+}
+
+/* Wide, display-optical sizing for the statement headline */
+.about-statement {
+  font-variation-settings: 'wdth' 64, 'opsz' 144;
+}
+
+/* Focus ring */
+.about-page :where(a, button, [tabindex]):focus-visible {
+  outline: 1px solid #f2f2f0;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+@media (max-width: 1023px) {
+  .hero-about-img {
+    max-height: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-copy {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .about-image-grid {
+    row-gap: 2rem;
   }
 }
