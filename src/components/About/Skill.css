@@ -120,8 +120,8 @@
 }
 
 .chip:hover {
-  background: #25221f;
-  border-color: rgba(166, 93, 59, 0.45);
+  background: #1f2225;
+  border-color: rgba(59, 123, 166, 0.45);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
 }
 

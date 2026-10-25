@@ -15,6 +15,7 @@ import End from './components/End/End';
 
 import Projects from './Pages/Project/Project';
 import { AboutPage } from './Pages/About-page/AboutPage';
+import SilkyRibbon from './components/Cursor/SilkyRibbon';
 
 
 
@@ -162,24 +163,27 @@ const App = () => {
   );
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div ref={containerRef} className='relative bg-[#fff]' data-scroll-container>
-            <Preloader onLoaded={() => setIsLoaded(true)} />
-            <Navbar scrollInstanceRef={scrollInstanceRef} />
-            <Home />
-            <About />
-            <Works />
-            <Contact />
-            <End />
-          </div>
-        }
-      />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/aboutpage" element={<AboutPage />} />
-    </Routes>
+    <>
+      <SilkyRibbon />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div ref={containerRef} className='relative bg-[#fff]' data-scroll-container>
+              <Preloader onLoaded={() => setIsLoaded(true)} />
+              <Navbar scrollInstanceRef={scrollInstanceRef} />
+              <Home />
+              <About />
+              <Works />
+              <Contact />
+              <End />
+            </div>
+          }
+        />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/aboutpage" element={<AboutPage />} />
+      </Routes>
+    </>
   );
 };
 

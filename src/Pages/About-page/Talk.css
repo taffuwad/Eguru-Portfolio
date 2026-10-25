@@ -122,7 +122,15 @@
 }
 @media (max-width:480px) {
     .talk{
-        min-height: 50vh;
+        min-height: 30vh;
+    }
+    .mm-word{
+        margin-left: -40vw;
+    }
+}
+@media (max-width:640px) {
+    .talk{
+        min-height: 45vh;
     }
     .mm-word{
         margin-left: -40vw;

@@ -1,37 +1,12 @@
 import { useRef, useEffect } from "react";
 import "./Talk.css";
 
-/**
- * LetsTalk v2 — "more amazing" edition.
- *
- * What's inside:
- *  - REAL spring physics per letter (requestAnimationFrame): every letter
- *    has position + velocity, so it wobbles, overshoots and settles like
- *    jelly instead of following a fixed CSS transition.
- *  - 2D cursor field: letters stretch, lift, tilt and lean toward your
- *    pointer in both axes; neighbours ripple with a liquid falloff.
- *  - Heat gradient: letters light up with a colour sweep the closer the
- *    cursor gets (background-clip gradient driven per letter).
- *  - CLICK = shockwave: a jump wave travels outward from the click point
- *    and a burst of particles pops off the letters.
- *  - The whole TALK word tilts in 3D (perspective) toward the cursor.
- *  - Letters cascade in with a spring entrance on mount; at rest they
- *    float gently like they're on water.
- *
- * Pure React + CSS. No GSAP needed. Import the CSS next to it.
- */
-
-
-
 const handleClick = () => {
-    const phoneNumber = "8801920409685";
-    const message = "Hello! there";
-    
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    
-    // Opens in a new tab
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+  const phoneNumber = "8801920409685";
+  const message = "Hello! there";
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+};
 
 const SPRING = 0.14;   // stiffness — higher = snappier
 const DAMPING = 0.76;  // lower = more jelly wobble
@@ -43,14 +18,16 @@ export default function LetsTalk() {
   const burstRef = useRef(null);
   const stateRef = useRef({ x: -9999, y: -9999, inside: false });
   const lettersRef = useRef([]);
+  
+  // Store measure function in a ref so onMove can access it
+  const measureRef = useRef(null);
 
-  /* ---------- collect letters & give each a physics body ---------- */
   useEffect(() => {
     const collect = (container, amp) =>
       Array.from(container?.querySelectorAll(".lt-letter") || []).map((el) => ({
         el,
         amp,
-        sy: 0.2, sx: 1.6, ty: 60, rot: 0, // start squashed/low for the entrance
+        sy: 0.2, sx: 1.6, ty: 60, rot: 0,
         vSy: 0, vSx: 0, vTy: 0, vRot: 0,
         kickAt: 0, kickPower: 0,
         cx: 0, cy: 0, h: 0,
@@ -63,14 +40,38 @@ export default function LetsTalk() {
 
     const measure = () => {
       lettersRef.current.forEach((L) => {
+        // 1. Temporarily remove transform to get the TRUE base position
+        const currentTransform = L.el.style.transform;
+        L.el.style.transform = 'none';
+        
         const r = L.el.getBoundingClientRect();
         L.cx = r.left + r.width / 2;
         L.cy = r.top + r.height / 2;
         L.h = r.height;
+        
+        // 2. Restore the transform
+        L.el.style.transform = currentTransform;
       });
     };
+
+    // Save to ref so onMove can trigger it
+    measureRef.current = measure;
+
+    // Initial measure
     measure();
+
+    // FIX 1: Wait for custom fonts to load, then re-measure
+    if (document.fonts) {
+      document.fonts.ready.then(measure);
+    }
+
+    // FIX 2: Re-measure on scroll and resize
+    window.addEventListener("scroll", measure, { passive: true });
     window.addEventListener("resize", measure);
+
+    // FIX 3: Re-measure if the component's layout changes
+    const ro = new ResizeObserver(measure);
+    if (sectionRef.current) ro.observe(sectionRef.current);
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf;
@@ -82,7 +83,6 @@ export default function LetsTalk() {
       const now = performance.now();
 
       lettersRef.current.forEach((L, i) => {
-        /* --- target from the 2D cursor field --- */
         let tSy = 1, tSx = 1, tTy = Math.sin(t * 1.6 + i * 0.7) * L.h * 0.03, tRot = 0;
 
         if (inside && !reduced) {
@@ -91,7 +91,8 @@ export default function LetsTalk() {
           const dist = Math.hypot(dx, dy);
           const range = L.h * 2.1;
           const f = Math.max(0, 1 - dist / range);
-          const e = f * f * (3 - 2 * f); // smoothstep = liquid falloff
+          const e = f * f * (3 - 2 * f); // smoothstep
+          
           tSy = 1 + 0.55 * e * L.amp;
           tSx = 1 - 0.24 * e * L.amp;
           tTy = -0.26 * L.h * e * L.amp;
@@ -101,19 +102,18 @@ export default function LetsTalk() {
           L.el.style.setProperty("--heat", 0);
         }
 
-        /* --- click shockwave arrives as a travelling kick --- */
         if (L.kickAt && now >= L.kickAt) {
           L.vSy += L.kickPower;
           L.vTy -= L.kickPower * L.h * 0.35;
           L.kickAt = 0;
         }
 
-        /* --- integrate the spring --- */
         const step = (cur, vel, target) => {
           vel += (target - cur) * SPRING;
           vel *= DAMPING;
           return [cur + vel, vel];
         };
+        
         [L.sy, L.vSy] = step(L.sy, L.vSy, tSy);
         [L.sx, L.vSx] = step(L.sx, L.vSx, tSx);
         [L.ty, L.vTy] = step(L.ty, L.vTy, tTy);
@@ -129,30 +129,31 @@ export default function LetsTalk() {
 
     return () => {
       cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", measure);
       window.removeEventListener("resize", measure);
+      ro.disconnect();
     };
   }, []);
 
-  /* ---------- pointer tracking (no re-renders, refs only) ---------- */
   const onMove = (e) => {
     stateRef.current = { x: e.clientX, y: e.clientY, inside: true };
 
-    // 3D tilt of the whole TALK word toward the cursor
+    // Apply 3D tilt
     const s = sectionRef.current?.getBoundingClientRect();
     if (s && talkRef.current) {
       const px = (e.clientX - s.left) / s.width - 0.5;
       const py = (e.clientY - s.top) / s.height - 0.5;
-      talkRef.current.style.transform =
-        `perspective(900px) rotateY(${px * 10}deg) rotateX(${-py * 8}deg)`;
+      talkRef.current.style.transform = `perspective(900px) rotateY(${px * 10}deg) rotateX(${-py * 8}deg)`;
     }
+    
+    // FIX 4: Re-measure here so the physics match the 3D tilt visual shift
+    measureRef.current?.();
   };
 
   const onLeave = () => {
     stateRef.current.inside = false;
     if (talkRef.current) talkRef.current.style.transform = "";
   };
-
-
 
   const split = (word) =>
     word.split("").map((ch, i) => (
