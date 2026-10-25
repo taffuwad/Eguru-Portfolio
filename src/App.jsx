@@ -16,6 +16,7 @@ import End from './components/End/End';
 import Projects from './Pages/Project/Project';
 import { AboutPage } from './Pages/About-page/AboutPage';
 import SilkyRibbon from './components/Cursor/SilkyRibbon';
+import TextCursor from './components/Cursor/TextCursor';
 
 
 
@@ -165,6 +166,7 @@ const App = () => {
   return (
     <>
       <SilkyRibbon />
+      <TextCursor />
       <Routes>
         <Route
           path="/"
