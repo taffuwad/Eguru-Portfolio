@@ -28,6 +28,7 @@
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
+  font-family: var(--font-para2);
 }
 
 .preloader-word-mask {
