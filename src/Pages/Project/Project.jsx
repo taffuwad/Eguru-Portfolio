@@ -25,18 +25,45 @@ const Projects = () => {
   gsap.registerPlugin(ScrollTrigger)
 
   useGSAP(function () {
-    gsap.from('.hero', {
-      height: '100px',
-      stagger: {
-        amount: 0.4
-      },
-      scrollTrigger: {
-        trigger: '.lol',
-        start: 'top 100%',
-        end: 'top -150%',
-        scrub: true
-      }
+    const media = gsap.matchMedia()
+
+    media.add('(min-width: 1024px)', function () {
+      gsap.from('.hero', {
+        height: '100px',
+        stagger: {
+          amount: 0.4
+        },
+        scrollTrigger: {
+          trigger: '.lol',
+          start: 'top 100%',
+          end: 'top -150%',
+          scrub: true
+        }
+      })
     })
+
+    media.add('(max-width: 1023px)', function () {
+      gsap.utils.toArray('.hero').forEach(function (hero) {
+        gsap.fromTo(hero, {
+          autoAlpha: 0,
+          y: 24
+        }, {
+          autoAlpha: 1,
+          y: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: hero,
+            start: 'top 90%',
+            end: 'top 65%',
+            scrub: true
+          }
+        })
+      })
+    })
+
+    return function () {
+      media.revert()
+    }
   })
 
   return (

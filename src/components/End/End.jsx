@@ -33,7 +33,11 @@ const End = () => {
 
         <div className="footer-column footer-reveal">
           <span className="footer-label">Find me</span>
-          <a href="#home">Whatsapp</a>
+          <a 
+            href="https://wa.me/8801920409685?text=Hello%20Fuwad%2C%20I%20want%20to%20work%20with%20you."
+            target="_blank"
+            rel="noopener noreferrer"
+          >Whatsapp</a>
           <a href="#home">LinkedIn</a>
           <a href="#home">GitHub</a>
           <a href="#home">Facebook</a>
